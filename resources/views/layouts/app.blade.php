@@ -6,41 +6,95 @@
     <title>Billing System</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-100">
 
-<div class="flex min-h-screen">
+<div class="bg-neutral-950 text-white">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-900 text-white flex-shrink-0">
-        <div class="p-6 text-xl font-bold border-b border-gray-700">
+    <aside class="sidebar">
+        <div class="sidebar-header">
             Astrid Billing
         </div>
 
-        <nav class="p-4 space-y-2">
-            <a href="{{ url('/') }}"
-               class="block px-4 py-2 rounded hover:bg-gray-800">
-                Dashboard
+        <nav class="sidebar-nav">
+
+            <!-- Dashboard -->
+            <a href="#" class="sidebar-item active">
+                <span>📊 Dashboard</span>
             </a>
 
-            <a href="{{ url('/payments') }}"
-               class="block px-4 py-2 rounded hover:bg-gray-800">
-                Payments
+            <!-- USERS -->
+            <div class="sidebar-section">Users</div>
+
+            <a href="#" class="sidebar-item">
+                <span>👤 Active Users</span>
+                <span class="sidebar-badge">0</span>
             </a>
 
-            <a href="{{ url('/invoices') }}"
-               class="block px-4 py-2 rounded hover:bg-gray-800">
-                Invoices
+            <a href="#" class="sidebar-item">
+                <span>🎫 Tickets</span>
+                <span class="sidebar-badge">0</span>
             </a>
+
+            <a href="#" class="sidebar-item">
+                <span>📌 Leads</span>
+                <span class="sidebar-badge">0</span>
+            </a>
+
+            <!-- FINANCE -->
+            <div class="sidebar-section">Finance</div>
+
+            <a href="#" class="sidebar-item">
+                <span>📦 Packages</span>
+                <span class="sidebar-badge">0</span>
+            </a>
+
+            <a href="#" class="sidebar-item">
+                <span>💳 Payments</span>
+                <span class="sidebar-badge">0</span>
+            </a>
+
+            <a href="#" class="sidebar-item">
+                <span>🎟️ Vouchers</span>
+                <span class="sidebar-badge">0</span>
+            </a>
+
+            <a href="#" class="sidebar-item">
+                <span>💸 Expenses</span>
+                <span class="sidebar-badge">0</span>
+            </a>
+
+            <!-- COMMUNICATION -->
+            <div class="sidebar-section">Communication</div>
+
+            <a href="#" class="sidebar-item">
+                <span>💬 Messages</span>
+            </a>
+
+            <a href="#" class="sidebar-item">
+                <span>✉️ Emails</span>
+            </a>
+
+            <!-- NETWORK -->
+            <div class="sidebar-section">Network</div>
+
+            <a href="#" class="sidebar-item">
+                <span>📡 Mikrotik</span>
+            </a>
+
         </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 p-6">
+    <main class="flex-1 ml-64 p-6">
         @yield('content')
     </main>
 
 </div>
+
+@stack('scripts')
 
 </body>
 </html>

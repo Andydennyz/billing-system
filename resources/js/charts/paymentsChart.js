@@ -1,11 +1,28 @@
-import Chart from 'chart.js/auto';
+import {
+    Chart,
+    LineController,
+    LineElement,
+    PointElement,
+    LinearScale,
+    CategoryScale,
+    Tooltip,
+    Filler,
+} from 'chart.js';
+
+Chart.register(
+    LineController,
+    LineElement,
+    PointElement,
+    LinearScale,
+    CategoryScale,
+    Tooltip,
+    Filler
+);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('paymentsChart');
+    const ctx = document.getElementById('paymentsChart');
 
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     new Chart(ctx, {
         type: 'line',
@@ -13,27 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [
                 {
-                    label: 'Payments (KES)',
-                    data: [12000, 19000, 15000, 22000, 18000, 26000],
-                    borderColor: '#22c55e',
-                    backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                    label: 'Payments',
+                    data: [0, 0, 0, 0, 0, 0],
+                    borderColor: '#fb923c',
+                    backgroundColor: 'rgba(251,146,60,0.15)',
                     tension: 0.4,
                     fill: true,
-                }
-            ]
+                },
+            ],
         },
         options: {
             responsive: true,
             plugins: {
-                legend: {
-                    display: true
-                }
+                legend: { display: false },
             },
             scales: {
+                x: {
+                    ticks: { color: '#9ca3af' },
+                    grid: { display: false },
+                },
                 y: {
-                    beginAtZero: true
-                }
-            }
-        }
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#262626' },
+                },
+            },
+        },
     });
 });
