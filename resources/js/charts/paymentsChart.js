@@ -1,3 +1,13 @@
+if (import.meta.hot) {
+    import.meta.hot.accept();
+    import.meta.hot.dispose(() => {
+        if (activeUsersChartInstance) {
+            activeUsersChartInstance.destroy();
+        }
+    });
+}
+
+
 import {
     Chart,
     LineController,
@@ -20,40 +30,25 @@ Chart.register(
 );
 
 document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('paymentsChart');
+    const canvas = document.getElementById('paymentsChart');
+    if (!canvas) return;
 
-    if (!ctx) return;
-
-    new Chart(ctx, {
+    new Chart(canvas, {
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [
-                {
-                    label: 'Payments',
-                    data: [0, 0, 0, 0, 0, 0],
-                    borderColor: '#fb923c',
-                    backgroundColor: 'rgba(251,146,60,0.15)',
-                    tension: 0.4,
-                    fill: true,
-                },
-            ],
+            datasets: [{
+                data: [0, 0, 0, 0, 0, 0],
+                borderColor: '#fb923c',
+                backgroundColor: 'rgba(251,146,60,0.15)',
+                tension: 0.4,
+                fill: true,
+            }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: { display: false },
-            },
-            scales: {
-                x: {
-                    ticks: { color: '#9ca3af' },
-                    grid: { display: false },
-                },
-                y: {
-                    ticks: { color: '#9ca3af' },
-                    grid: { color: '#262626' },
-                },
-            },
-        },
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+        }
     });
 });

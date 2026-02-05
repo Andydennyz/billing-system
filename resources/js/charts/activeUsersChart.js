@@ -1,30 +1,28 @@
+if (import.meta.hot) {
+    import.meta.hot.accept();
+    import.meta.hot.dispose(() => {
+        if (activeUsersChartInstance) {
+            activeUsersChartInstance.destroy();
+        }
+    });
+}
+
+
 import Chart from 'chart.js/auto';
 
-const activeUsersCanvas = document.getElementById('activeUsersChart');
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('activeUsersChart');
+    if (!canvas) return;
 
-if (activeUsersCanvas) {
-    const activeUsersCtx = activeUsersCanvas.getContext('2d');
-
-    new Chart(activeUsersCtx, {
-        type: 'line',
+    new Chart(canvas, {
+        type: 'bar',
         data: {
-            labels: ['Mon', 'Tue'],
-            datasets: [
-                {
-                    label: 'Hotspot Users',
-                    data: [0, 0],
-                    borderColor: '#fb923c',
-                    tension: 0.4,
-                    pointRadius: 4
-                },
-                {
-                    label: 'PPPoE Users',
-                    data: [0, 0],
-                    borderColor: '#38bdf8',
-                    tension: 0.4,
-                    pointRadius: 4
-                }
-            ]
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            datasets: [{
+                label: 'Active Users',
+                data: [0, 0, 0, 0, 0],
+                backgroundColor: '#38bdf8'
+            }]
         },
         options: {
             responsive: true,
@@ -33,11 +31,7 @@ if (activeUsersCanvas) {
                 legend: {
                     labels: { color: '#d1d5db' }
                 }
-            },
-            scales: {
-                x: { ticks: { color: '#9ca3af' } },
-                y: { ticks: { color: '#9ca3af' } }
             }
         }
     });
-}
+});
