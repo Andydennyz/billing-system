@@ -13,28 +13,58 @@
     @apply mt-4 space-y-1 px-3;
 }
 
-/* Section titles */
-.sidebar-section {
+/* Section title (Dashboard, Users, Finance etc) */
+.sidebar-title {
     @apply mt-6 px-4 text-xs uppercase tracking-wider text-neutral-500;
 }
 
-/* Sidebar item */
+/* Group wrapper (Users + children) */
+.sidebar-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main sidebar item */
 .sidebar-item {
     @apply flex items-center justify-between gap-3 px-4 py-2 rounded-lg
            text-sm transition cursor-pointer;
 }
 
-/* Hover state */
 .sidebar-item:hover {
     @apply bg-neutral-800 text-white;
 }
 
-/* Active item */
 .sidebar-item.active {
     @apply bg-orange-300 text-black font-semibold;
 }
 
-/* Badge (numbers) */
+/* Badge */
 .sidebar-badge {
     @apply text-xs bg-neutral-800 text-neutral-200 px-2 py-0.5 rounded;
+}
+
+/* Sub menu */
+.sidebar-submenu {
+    margin-left: 2rem;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Sub item */
+.sidebar-subitem {
+    font-size: 14px;
+    color: #cfcfcf;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.sidebar-subitem:hover {
+    background: rgba(255, 178, 122, 0.15);
+}
+
+.sidebar-subitem.active {
+    background: #ffb27a;
+    color: #000;
 }

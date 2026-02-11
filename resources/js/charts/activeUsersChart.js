@@ -1,20 +1,18 @@
-if (import.meta.hot) {
-    import.meta.hot.accept();
-    import.meta.hot.dispose(() => {
-        if (activeUsersChartInstance) {
-            activeUsersChartInstance.destroy();
-        }
-    });
-}
-
-
 import Chart from 'chart.js/auto';
 
-document.addEventListener('DOMContentLoaded', () => {
+// Store chart instance globally for cleanup
+let activeUsersChartInstance = null;
+
+function initChart() {
     const canvas = document.getElementById('activeUsersChart');
     if (!canvas) return;
-
-    new Chart(canvas, {
+    
+    // Clean up existing chart
+    if (activeUsersChartInstance) {
+        activeUsersChartInstance.destroy();
+    }
+    
+    activeUsersChartInstance = new Chart(canvas, {
         type: 'bar',
         data: {
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
@@ -34,4 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
+}
+
+// Use a single DOMContentLoaded listener
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChart);
+} else {
+    initChart();
+}
+
+// HMR cleanup
+if (import.meta.hot) {
+    import.meta.hot.accept(() => {
+        // Reinitialize chart on HMR update
+        initChart();
+    });
+    
+    import.meta.hot.dispose(() => {
+        if (activeUsersChartInstance) {
+            activeUsersChartInstance.destroy();
+            activeUsersChartInstance = null;
+        }
+    });
+}

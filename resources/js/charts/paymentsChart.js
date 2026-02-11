@@ -1,13 +1,3 @@
-if (import.meta.hot) {
-    import.meta.hot.accept();
-    import.meta.hot.dispose(() => {
-        if (activeUsersChartInstance) {
-            activeUsersChartInstance.destroy();
-        }
-    });
-}
-
-
 import {
     Chart,
     LineController,
@@ -29,11 +19,19 @@ Chart.register(
     Filler
 );
 
-document.addEventListener('DOMContentLoaded', () => {
+// Store chart instance globally for cleanup
+let chartInstance = null;
+
+function initChart() {
     const canvas = document.getElementById('paymentsChart');
     if (!canvas) return;
-
-    new Chart(canvas, {
+    
+    // Clean up existing chart
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+    
+    chartInstance = new Chart(canvas, {
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -51,4 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: { legend: { display: false } }
         }
     });
-});
+}
+
+// Use a single DOMContentLoaded listener
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChart);
+} else {
+    initChart();
+}
+
+// HMR cleanup
+if (import.meta.hot) {
+    import.meta.hot.accept(() => {
+        // Reinitialize chart on HMR update
+        initChart();
+    });
+    
+    import.meta.hot.dispose(() => {
+        if (chartInstance) {
+            chartInstance.destroy();
+            chartInstance = null;
+        }
+    });
+}

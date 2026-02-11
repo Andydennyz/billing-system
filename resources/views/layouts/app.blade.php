@@ -20,17 +20,34 @@
         <nav class="sidebar-nav">
 
             <!-- Dashboard -->
-            <a href="#" class="sidebar-item active">
+            <a href="{{ route('dashboard') }}" class="sidebar-item active">
                 <span>📊 Dashboard</span>
             </a>
 
             <!-- USERS -->
             <div class="sidebar-section">Users</div>
 
-            <a href="#" class="sidebar-item">
+            <a href="{{ route('active-users') }}" class="sidebar-item">
                 <span>👤 Active Users</span>
                 <span class="sidebar-badge">0</span>
             </a>
+
+            <a href="{{ route('users') }}"
+    class="sidebar-item {{ request()->routeIs('users') ? 'active' : '' }}">
+        <span>👤 Users</span>
+        <span class="sidebar-badge">0</span>
+    </a>
+
+            <div class="sidebar-submenu">
+        <a href="{{ route('expiry-dates') }}"
+        class="sidebar-subitem {{ request()->routeIs('expiry-dates') ? 'active' : '' }}">
+            Expiry Dates
+        </a>
+
+            <a href="{{ route('ip-bindings') }}"
+        ="sidebar-subitem {{ request()->routeIs('ip-bindings') ? 'active' : '' }}">
+            IP Bindings
+        </a>
 
             <a href="#" class="sidebar-item">
                 <span>🎫 Tickets</span>
@@ -87,9 +104,12 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 ml-64 p-6">
-        @yield('content')
-    </main>
+<main class="flex-1 ml-64 p-6 flex flex-col min-h-screen">
+    @yield('content')
+
+    <!-- Footer -->
+    @include('partials.footer')
+</main>
 
 </div>
 
