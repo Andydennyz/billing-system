@@ -20,9 +20,21 @@
         <nav class="sidebar-nav">
 
             <!-- Dashboard -->
-            <a href="{{ route('dashboard') }}" class="sidebar-item active">
-                <span>📊 Dashboard</span>
-            </a>
+            <div class="sidebar-group">
+
+    <a href="{{ route('dashboard') }}"
+    class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+        <span>📊 Dashboard</span>
+    </a>
+
+    <div class="sidebar-submenu">
+        <a href="{{ route('dashboard.active-users') }}"
+        class="sidebar-subitem {{ request()->routeIs('dashboard.active-users') ? 'active' : '' }}">
+            👤 Active Users Chart
+        </a>
+    </div>
+
+</div>
 
             <!-- USERS -->
             <div class="sidebar-section">Users</div>
@@ -32,8 +44,7 @@
                 <span class="sidebar-badge">0</span>
             </a>
 
-            <a href="{{ route('users') }}"
-    class="sidebar-item {{ request()->routeIs('users') ? 'active' : '' }}">
+            <a href="{{ route('users') }}" class="sidebar-item {{ request()->routeIs('users') ? 'active' : '' }}">
         <span>👤 Users</span>
         <span class="sidebar-badge">0</span>
     </a>

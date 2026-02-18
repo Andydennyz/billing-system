@@ -1,57 +1,54 @@
 import Chart from 'chart.js/auto';
 
-// Store chart instance globally for cleanup
-let activeUsersChartInstance = null;
+const ctx = document.getElementById('activeUsersChart');
 
-function initChart() {
-    const canvas = document.getElementById('activeUsersChart');
-    if (!canvas) return;
-    
-    // Clean up existing chart
-    if (activeUsersChartInstance) {
-        activeUsersChartInstance.destroy();
-    }
-    
-    activeUsersChartInstance = new Chart(canvas, {
-        type: 'bar',
+if (ctx) {
+    new Chart(ctx, {
+        type: 'line',
         data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-            datasets: [{
-                label: 'Active Users',
-                data: [0, 0, 0, 0, 0],
-                backgroundColor: '#38bdf8'
-            }]
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [
+                {
+                    label: 'Hotspot Users',
+                    data: [0, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#fb923c',
+                    backgroundColor: 'rgba(251, 146, 60, 0.15)',
+                    tension: 0.4,
+                    pointRadius: 4,
+                    fill: true,
+                },
+                {
+                    label: 'PPPoE Users',
+                    data: [0, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.15)',
+                    tension: 0.4,
+                    pointRadius: 4,
+                    fill: true,
+                }
+            ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    labels: { color: '#d1d5db' }
+                    labels: {
+                        color: '#e5e7eb'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
                 }
             }
-        }
-    });
-}
-
-// Use a single DOMContentLoaded listener
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initChart);
-} else {
-    initChart();
-}
-
-// HMR cleanup
-if (import.meta.hot) {
-    import.meta.hot.accept(() => {
-        // Reinitialize chart on HMR update
-        initChart();
-    });
-    
-    import.meta.hot.dispose(() => {
-        if (activeUsersChartInstance) {
-            activeUsersChartInstance.destroy();
-            activeUsersChartInstance = null;
         }
     });
 }

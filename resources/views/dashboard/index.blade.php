@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="space-y-6">
-        {{--Header --}}
+    {{-- Header --}}
     @include('dashboard.header')
 
     {{-- Greeting + header --}}
@@ -11,11 +11,10 @@
     {{-- Stats cards --}}
     @include('dashboard.stats')
 
-    {{-- Charts --}}
-    @include('dashboard.charts')
+    {{-- Charts (Payments ONLY) --}}
+    @include('dashboard.charts')  
 
-    {{-- Active users --}}
-    @include('dashboard.activity')
-
+    {{-- ❌ REMOVE Active Users from dashboard --}}
+    {{-- @include('dashboard.activity') --}}
 </div>
 @endsection

@@ -19,56 +19,41 @@ Chart.register(
     Filler
 );
 
-// Store chart instance globally for cleanup
-let chartInstance = null;
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('paymentsChart');
 
-function initChart() {
-    const canvas = document.getElementById('paymentsChart');
-    if (!canvas) return;
-    
-    // Clean up existing chart
-    if (chartInstance) {
-        chartInstance.destroy();
-    }
-    
-    chartInstance = new Chart(canvas, {
+    if (!ctx) return;
+
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                data: [0, 0, 0, 0, 0, 0],
-                borderColor: '#fb923c',
-                backgroundColor: 'rgba(251,146,60,0.15)',
-                tension: 0.4,
-                fill: true,
-            }]
+            datasets: [
+                {
+                    label: 'Payments',
+                    data: [0, 0, 0, 0, 0, 0],
+                    borderColor: '#fb923c',
+                    backgroundColor: 'rgba(251,146,60,0.15)',
+                    tension: 0.4,
+                    fill: true,
+                },
+            ],
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
-        }
+            plugins: {
+                legend: { display: false },
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#9ca3af' },
+                    grid: { display: false },
+                },
+                y: {
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#262626' },
+                },
+            },
+        },
     });
-}
-
-// Use a single DOMContentLoaded listener
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initChart);
-} else {
-    initChart();
-}
-
-// HMR cleanup
-if (import.meta.hot) {
-    import.meta.hot.accept(() => {
-        // Reinitialize chart on HMR update
-        initChart();
-    });
-    
-    import.meta.hot.dispose(() => {
-        if (chartInstance) {
-            chartInstance.destroy();
-            chartInstance = null;
-        }
-    });
-}
+});

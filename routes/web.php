@@ -6,6 +6,13 @@ Route::get('/', function () {
     return view('dashboard.index');
 })->name('dashboard');
 
+Route::get('/', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+
+Route::get('/dashboard/active-users', function () {
+    return view('dashboard.active-users');
+})->name('dashboard.active-users');
 Route::get('/active-users', function () {
     return view('users.active-users');
 })->name('active-users');
