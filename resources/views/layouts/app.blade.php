@@ -20,17 +20,31 @@
         <nav class="sidebar-nav">
 
             <!-- Dashboard -->
-            <a href="#" class="sidebar-item active">
+            <a
+                href="{{ route('dashboard.index') }}"
+                class="sidebar-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}"
+            >
                 <span>📊 Dashboard</span>
             </a>
 
+            <div class="ml-4 space-y-1">
+                <a
+                    href="{{ route('dashboard.active-users') }}"
+                    class="sidebar-item {{ request()->routeIs('dashboard.active-users') ? 'active' : '' }}"
+                >
+                    <span>👤 Active Users Chart</span>
+                </a>
+
+                <a
+                    href="{{ route('dashboard.payments') }}"
+                    class="sidebar-item {{ request()->routeIs('dashboard.payments') ? 'active' : '' }}"
+                >
+                    <span>💳 Payments Chart</span>
+                </a>
+            </div>
+
             <!-- USERS -->
             <div class="sidebar-section">Users</div>
-
-            <a href="#" class="sidebar-item">
-                <span>👤 Active Users</span>
-                <span class="sidebar-badge">0</span>
-            </a>
 
             <a href="#" class="sidebar-item">
                 <span>🎫 Tickets</span>
@@ -47,11 +61,6 @@
 
             <a href="#" class="sidebar-item">
                 <span>📦 Packages</span>
-                <span class="sidebar-badge">0</span>
-            </a>
-
-            <a href="#" class="sidebar-item">
-                <span>💳 Payments</span>
                 <span class="sidebar-badge">0</span>
             </a>
 
