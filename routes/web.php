@@ -29,3 +29,11 @@ Route::get('/expiry-dates', function () {
 Route::get('/ip-bindings', function () {
     return view('users.ip-bindings');
 })->name('ip-bindings');
+
+Route::get('/dashboard/data-usage', function () {
+    return view('dashboard.data-usage');
+})->name('dashboard.data-usage');
+
+Route::get('/dashboard/retention-rate', function () {
+    return view('dashboard.retention-rate');
+})->name('dashboard.retention-rate');
