@@ -1,5 +1,6 @@
 <?php
 
+header("Content-Security-Policy: default-src 'self'; script-src 'self' http://127.0.0.1:5174; style-src 'self' http://127.0.0.1:5174; img-src 'self' data:; connect-src 'self' http://127.0.0.1:5174");
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
