@@ -45,3 +45,11 @@ Route::get('/dashboard/utilization', function () {
 Route::get('/dashboard/revenue', function () {
     return view('dashboard.revenue');
 })->name('dashboard.revenue');
+
+Route::get('/dashboard/sent-sms', function () {
+    return view('dashboard.sent-sms');
+})->name('dashboard.sent-sms');
+
+Route::get('/dashboard/net-data-usage', function () {
+    return view('dashboard.net-data-usage');
+})->name('dashboard.net-data-usage');

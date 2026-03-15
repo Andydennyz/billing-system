@@ -2,15 +2,23 @@
 
 @section('content')
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="w-full h-full">
 
-<div class="card">
-<h2 class="text-lg font-semibold">Package Utilization</h2>
-<p class="text-sm text-gray-400 mb-4">Distribution of packages in use.</p>
+    <div class="bg-neutral-900 rounded-xl p-6 shadow h-[600px]">
 
-<canvas id="utilizationChart"></canvas>
+        <h2 class="text-lg font-semibold text-white">
+            Package Utilization
+        </h2>
 
-</div>
+        <p class="text-sm text-gray-400 mb-6">
+            Distribution of packages in use.
+        </p>
+
+        <div class="relative h-[500px]">
+            <canvas id="utilizationChart"></canvas>
+        </div>
+
+    </div>
 
 </div>
 

@@ -33,6 +33,18 @@ class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
     class="sidebar-subitem {{ request()->routeIs('dashboard.revenue') ? 'active' : '' }}">
         💰 Revenue
     </a>
+
+<!-- sent sms  -->
+    <a href="{{ route('dashboard.sent-sms') }}"
+class="sidebar-subitem {{ request()->routeIs('dashboard.sent-sms') ? 'active' : '' }}">
+    ✉️ Sent SMS
+</a>
+
+<!-- Net data usage  -->
+<a href="{{ route('dashboard.net-data-usage') }}"
+class="sidebar-subitem {{ request()->routeIs('dashboard.net-data-usage') ? 'active' : '' }}">
+    📡 Net Data Usage
+</a>
 </div>
 
 

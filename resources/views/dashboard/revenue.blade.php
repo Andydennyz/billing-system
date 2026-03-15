@@ -2,17 +2,25 @@
 
 @section('content')
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="w-full">
 
-<div class="card">
-<h2 class="text-lg font-semibold">Revenue Forecast (3 months)</h2>
-<p class="text-sm text-gray-400 mb-4">
-How much revenue will you expect to generate in the next 3 months?
-</p>
+    <div class="bg-neutral-900 rounded-xl shadow p-6 w-full">
 
-<canvas id="revenueChart"></canvas>
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold text-white">
+                Revenue Forecast (3 months)
+            </h2>
 
-</div>
+            <p class="text-gray-400 text-sm">
+                How much revenue will you expect to generate in the next 3 months?
+            </p>
+        </div>
+
+        <div class="w-full h-[500px]">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+    </div>
 
 </div>
 
