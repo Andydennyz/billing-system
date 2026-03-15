@@ -21,6 +21,18 @@ class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
     class="sidebar-subitem {{ request()->routeIs('dashboard.retention-rate') ? 'active' : '' }}">
         🔁 Retention Rate
     </a>
+
+    <!-- Utilization -->
+    <a href="{{ route('dashboard.utilization') }}"
+    class="sidebar-subitem {{ request()->routeIs('dashboard.utilization') ? 'active' : '' }}">
+        📦 Utilization
+    </a>
+
+    <!-- Revenue -->
+    <a href="{{ route('dashboard.revenue') }}"
+    class="sidebar-subitem {{ request()->routeIs('dashboard.revenue') ? 'active' : '' }}">
+        💰 Revenue
+    </a>
 </div>
 
 

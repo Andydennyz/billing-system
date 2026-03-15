@@ -37,3 +37,11 @@ Route::get('/dashboard/data-usage', function () {
 Route::get('/dashboard/retention-rate', function () {
     return view('dashboard.retention-rate');
 })->name('dashboard.retention-rate');
+
+Route::get('/dashboard/utilization', function () {
+    return view('dashboard.utilization');
+})->name('dashboard.utilization');
+
+Route::get('/dashboard/revenue', function () {
+    return view('dashboard.revenue');
+})->name('dashboard.revenue');
