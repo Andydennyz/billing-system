@@ -45,6 +45,11 @@ class="sidebar-subitem {{ request()->routeIs('dashboard.sent-sms') ? 'active' : 
 class="sidebar-subitem {{ request()->routeIs('dashboard.net-data-usage') ? 'active' : '' }}">
     📡 Net Data Usage
 </a>
+
+<a href="{{ route('dashboard.user-registrations') }}"
+class="sidebar-subitem {{ request()->routeIs('dashboard.user-registrations') ? 'active' : '' }}">
+    👤 User Registrations
+</a>
 </div>
 
 
