@@ -53,3 +53,7 @@ Route::get('/dashboard/sent-sms', function () {
 Route::get('/dashboard/net-data-usage', function () {
     return view('dashboard.net-data-usage');
 })->name('dashboard.net-data-usage');
+
+Route::get('/dashboard/user-registrations', function () {
+    return view('dashboard.user-registrations');
+})->name('dashboard.user-registrations');

@@ -8,3 +8,4 @@ import './charts/revenueChart';
 import './charts/utilizationChart';
 import './charts/smsChart';
 import './charts/netUsageChart';
+import './charts/registrationChart';
